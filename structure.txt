@@ -1,0 +1,63 @@
+AireAburra/
+│
+├── docs/                  # Documentación del proyecto (README, diagramas, manuales)
+│   ├── README.md          # Descripción general, cómo ejecutar el proyecto, dependencias
+│   ├── diagramas/         # Diagramas de flujo, arquitectura, etc.
+│   └── manual_usuario.pdf # Manual para usuarios finales (si aplica)
+│
+├── backend/               # Todo el código del backend (bot, scripts de procesamiento, API)
+│   ├── bot/               # Código del bot de descarga
+│   │   ├── sisaire_bot.py # Script principal del bot para descargar datos de SISAire
+│   │   ├── config.py      # Configuraciones (URLs, credenciales, paths)
+│   │   └── utils/         # Funciones auxiliares (ej. manejo de errores, logging)
+│   │       ├── helpers.py
+│   │       └── logger.py
+│   │
+│   ├── processing/        # Scripts para procesar y estandarizar datos
+│   │   ├── clean_data.py  # Limpieza y validación de datos crudos
+│   │   ├── standardize.py # Estandarización de columnas, formatos, etc.
+│   │   └── upload_db.py   # Subir datos procesados a la base de datos
+│   │
+│   ├── database/          # Scripts y configuraciones de la base de datos
+│   │   ├── schema.sql     # Esquema de la base de datos (tablas, índices)
+│   │   └── db_connection.py # Conexión a la base de datos (PostgreSQL)
+│   │
+│   └── api/               # API para servir datos al frontend
+│       ├── app.py         # Configuración de la API (FastAPI/Flask)
+│       ├── routes/        # Endpoints de la API
+│       └── models/        # Modelos de datos (ej. Estacion, DatoAmbiental)
+│
+├── data/                  # Datos crudos y procesados
+│   ├── raw/               # Datos crudos descargados por el bot (NO modificar manualmente)
+│   │   ├── estacion_1/    # Carpeta por estación
+│   │   │   ├── 2023.csv
+│   │   │   ├── 2024.csv
+│   │   │   └── ...
+│   │   └── estacion_2/
+│   │
+│   ├── processed/         # Datos procesados y listos para análisis (CSV/Parquet)
+│   │   ├── estacion_1.parquet
+│   │   └── estacion_2.parquet
+│   │
+│   └── external/          # Datos externos (ej. capas geoespaciales, límites administrativos)
+│       ├── shapefiles/
+│       └── referencia_coordenadas.csv
+│
+├── frontend/              # Frontend con Astro
+│   ├── public/            # Archivos estáticos (imágenes, fuentes)
+│   ├── src/
+│   │   ├── components/    # Componentes reutilizables (ej. Mapa.astro, Grafico.astro)
+│   │   ├── pages/         # Páginas del dashboard (ej. index.astro, estacion/[id].astro)
+│   │   ├── styles/        # Estilos globales y por componente (CSS/Tailwind)
+│   │   ├── utils/         # Funciones auxiliares (ej. formato de fechas, colores para ICA)
+│   │   └── stores/        # Estado global (si usas stores como Zustand o Redux)
+│   │
+│   ├── astro.config.mjs   # Configuración de Astro
+│   └── package.json       # Dependencias del frontend
+│
+├── scripts/               # Scripts auxiliares (ej. despliegue, respaldo)
+│   ├── deploy_backend.sh  # Script para desplegar el backend
+│   ├── deploy_frontend.sh # Script para desplegar el frontend
+│   └── backup_db.sh       # Respaldo de la base de datos
+│
+└── .gitignore             # Archivos y carpetas a ignorar por Git (ej. data/raw/, node_modules/)
